@@ -1,0 +1,17 @@
+This directory contains product images.
+
+For the sample products, you can add the following image files:
+- canon-pixma-ts3420.jpg
+- hp-laserjet-m15w.jpg
+- epson-ecotank-et2720.jpg
+- brother-hl-l2350dw.jpg
+- canon-selphy-cp1300.jpg
+- hp-officejet-9015e.jpg
+
+You can use placeholder images or download actual product images from the manufacturers' websites.
+
+For development purposes, you can use placeholder services like:
+- https://via.placeholder.com/300x200/cccccc/000000?text=Printer+Image
+- https://picsum.photos/300/200
+
+Or create a simple SVG placeholder inline in the HTML.
