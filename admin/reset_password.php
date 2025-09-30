@@ -9,21 +9,25 @@ $db = $database->getConnection();
 $userModel = new User($db);
 $resetModel = new PasswordReset($db);
 
-$token = trim($_GET['token'] ?? '');
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$token = trim($method === 'POST' ? ($_POST['token'] ?? '') : ($_GET['token'] ?? ''));
 $valid = false;
 $error = '';
 $info = '';
 
-if ($token !== '') {
-  $row = $resetModel->verifyToken($token);
-  $valid = (bool)$row;
-  $resetRow = $row ?: null;
-} else {
-  $error = 'Invalid or missing token.';
+// Only validate GET token presence on initial GET request
+if ($method === 'GET') {
+  if ($token !== '') {
+    $row = $resetModel->verifyToken($token);
+    $valid = (bool)$row;
+    $resetRow = $row ?: null;
+  } else {
+    $error = 'Invalid or missing token.';
+  }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $token = trim($_POST['token'] ?? '');
+  // token already taken from POST above
   $password = $_POST['password'] ?? '';
   $confirm = $_POST['confirm'] ?? '';
   $row = $resetModel->verifyToken($token);
@@ -44,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       logoutUser();
       // Show success and link to login
       $valid = false;
+      // Ensure no stale error remains
+      $error = '';
     } else {
       $error = 'Failed to update password. Please try again.';
     }

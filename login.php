@@ -107,6 +107,9 @@ if(isset($_GET['registered'])) {
                         Don't have an account? <a href="register.php<?php echo !empty($redirectTarget) ? ('?redirect=' . urlencode($redirectTarget)) : ''; ?>" style="color: #3498db;">Register here</a>
                     </p>
                 </div>
+                <p style="text-align: center; margin-top: 0.5rem;">
+                    <a href="/printer-store/forgot_password.php" style="color: #3498db;">Forgot password?</a>
+                </p>
             </form>
         </div>
     </main>
