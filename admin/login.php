@@ -161,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-actions">
           <button type="submit" class="btn-primary">Login</button>
         </div>
+        <p class="hint"><a href="/printer-store/admin/forgot_password.php">Forgot password?</a></p>
         <a href="/printer-store/index.php" class="hint">Back to site</a>
         <p class="hint">Only allowlisted accounts can access the admin dashboard.</p>
       </form>

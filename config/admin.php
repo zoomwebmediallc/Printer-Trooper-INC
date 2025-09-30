@@ -3,6 +3,6 @@
 // IMPORTANT: Replace these sample entries with real admin identifiers.
 // You can include either usernames or emails from your `users` table.
 $ADMIN_USERS = [
-    'admin',            // username example
-    'admin@example.com' // email example
+    'admin_user',            // username example
+    'admin@wishgeekstechserve.com' // email example
 ];

@@ -1,5 +1,5 @@
 <?php
-require_once './config/database.php';
+// Path-agnostic model. Caller must include config and pass PDO connection.
 
 class User {
     private $conn;
@@ -75,6 +75,16 @@ class User {
         }
         
         return false;
+    }
+
+    // Find user by username or email
+    public function findByUsernameOrEmail($identifier) {
+        $sql = "SELECT id, username, email, first_name, last_name FROM " . $this->table_name . " WHERE username = :id OR email = :id LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $identifier);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ?: false;
     }
 
     // Check if username exists
@@ -158,6 +168,19 @@ class User {
         }
         
         return false;
+    }
+
+    // Update password securely by user id
+    public function updatePassword($userId, $plainPassword) {
+        if (empty($userId) || empty($plainPassword)) {
+            return false;
+        }
+        $hash = password_hash($plainPassword, PASSWORD_DEFAULT);
+        $sql = "UPDATE " . $this->table_name . " SET password = :p WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':p', $hash);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }
 ?>
