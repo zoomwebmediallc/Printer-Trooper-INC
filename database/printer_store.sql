@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2025 at 03:10 PM
+-- Generation Time: Sep 30, 2025 at 06:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -119,7 +119,7 @@ INSERT INTO `orders` (`id`, `order_number`, `user_id`, `session_id`, `customer_e
 (7, 'PS-20250925-B54706', 2, 'i7he7us95njjhsoje1gvcnghqp', 'sahiba.krp2000@gmail.com', 27.59, 'processing', 'Sec 22 Noida near shivammarket dharam public school', 'stripe', 'pi_3SBFE708O9gYqTfw1Tvdt8TG', '2025-09-25 13:28:52'),
 (8, 'PS-20250926-85E67A', 1, 'tl8rlh97lib9ag732o8ub2gqit', 'sahiba.krp2000@gmail.com', 89.99, 'processing', 'Sec 22 Noida near shivammarket dharam public school', 'stripe', 'pi_3SBZ2Y08O9gYqTfw0sQAtWD0', '2025-09-26 10:38:15'),
 (9, 'PS-20250926-384DF2', 1, 'tl8rlh97lib9ag732o8ub2gqit', 'sahiba.krp2000@gmail.com', 43.19, 'processing', 'Sec 22 Noida near shivammarket dharam public school', 'stripe', 'pi_3SBZ9w08O9gYqTfw1UQdeDfW', '2025-09-26 10:45:53'),
-(10, 'PS-20250926-C556A6', 1, 'tl8rlh97lib9ag732o8ub2gqit', 'sahiba.krp2000@gmail.com', 1156.87, 'processing', 'Sec 22 Noida near shivammarket dharam public school', 'stripe', 'pi_3SBbFO08O9gYqTfw0gAh1fVn', '2025-09-26 12:59:40');
+(10, 'PS-20250926-C556A6', 1, 'tl8rlh97lib9ag732o8ub2gqit', 'sahiba.krp2000@gmail.com', 1156.87, 'cancelled', 'Sec 22 Noida near shivammarket dharam public school', 'stripe', 'pi_3SBbFO08O9gYqTfw0gAh1fVn', '2025-09-26 12:59:40');
 
 -- --------------------------------------------------------
 
@@ -151,6 +151,33 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 (9, 8, 41, 1, 89.99),
 (10, 9, 19, 1, 43.19),
 (11, 10, 31, 13, 88.99);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token_hash` char(64) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `used_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `user_id`, `token_hash`, `expires_at`, `used_at`, `created_at`) VALUES
+(1, 1, '77db582e6b04f3f3d7f4c3160967a1eec969d4e17b7e3e84c044aacbc9ca2828', '2025-09-30 18:43:06', '2025-09-30 18:15:12', '2025-09-30 21:43:06'),
+(2, 1, '0099ce29d1214335c0b537bf543d70dc7202085e17919ecaec502679022c63ef', '2025-09-30 18:45:49', '2025-09-30 18:16:50', '2025-09-30 21:45:49'),
+(3, 1, '0b68071ef93c8251f69930883345ca9229495c90924a57e85551bf7fd348641e', '2025-09-30 18:51:27', NULL, '2025-09-30 21:51:27'),
+(4, 3, '4792e5a07fe4ca34e247025ede13f1b1a4826ab85d3b2fd0ca175d13e3324de8', '2025-09-30 18:51:43', NULL, '2025-09-30 21:51:43'),
+(5, 3, 'd1f22bcb1ce763d62539c43a1246d692ef0571fa5d52feeb7bf824894331a1b0', '2025-09-30 18:52:00', '2025-09-30 18:24:27', '2025-09-30 21:52:00'),
+(6, 3, '89a6fbf39a14848c3a64d76c9f1f587fa66a12aa6de6edec76c24cdda24c91ee', '2025-09-30 19:00:28', '2025-09-30 18:30:55', '2025-09-30 22:00:28');
 
 -- --------------------------------------------------------
 
@@ -282,8 +309,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `first_name`, `last_name`, `phone`, `address`, `created_at`, `stripe_customer_id`) VALUES
-(1, 'sahiba', 'sahiba@wishgeekstechserve.com', '$2y$10$LTcPmX0n9TUNLmcZQibDJuJpIDYDXibTq1KM1v6NFsRnYZJMdjfre', 'Sahiba', 'Bano', '8595046293', 'Noida', '2025-09-24 09:55:49', 'cus_T7Qe4F2tmjlh7R'),
-(2, 'Saaaahii', 'sahiba.krp2000@gmail.com', '$2y$10$Z0RzEQViK8dLMcgop9PAC.ndboYzTm8sMDsCqUYODLKvdZFVFb3fu', 'Saahi', 'Bnnnn', '67687878889', 'gyuiiuiui', '2025-09-25 13:13:53', 'cus_T7U8e95Kqvr2aS');
+(1, 'sahiba', 'sahiba@wishgeekstechserve.com', '$2y$10$R1weOq33TSvS2ZXiOvpPN.p2UWXOuELQnS.5pJh8v.53iUIgVjTPy', 'Sahiba', 'Bano', '8595046293', 'Noida', '2025-09-24 09:55:49', 'cus_T7Qe4F2tmjlh7R'),
+(2, 'Saaaahii', 'priyanka@wishgeekstechserve.com', '$2y$10$Z0RzEQViK8dLMcgop9PAC.ndboYzTm8sMDsCqUYODLKvdZFVFb3fu', 'Saahi', 'Bnnnn', '67687878889', 'gyuiiuiui', '2025-09-25 13:13:53', 'cus_T7U8e95Kqvr2aS'),
+(3, 'admin_user', 'sahiba.krp2000@gmail.com', '$2y$10$6uW8yrIy3T74suBG5WckreRfE15dTyZXTM61TrTgZrl/rZwdfetEW', 'admin', 'user', '6765544475', 'NNnnnn', '2025-09-30 15:42:16', NULL);
 
 --
 -- Indexes for dumped tables
@@ -326,6 +354,14 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token_hash` (`token_hash`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `products`
@@ -384,6 +420,12 @@ ALTER TABLE `order_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -399,7 +441,7 @@ ALTER TABLE `saved_cards`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -424,6 +466,12 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD CONSTRAINT `password_resets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`
