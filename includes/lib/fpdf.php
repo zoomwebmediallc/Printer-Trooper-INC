@@ -218,11 +218,9 @@ class FPDF
             $this->PageInfo[$n]['n']=($this->n - 1);
             $kids.=($this->n - 1)." 0 R ";
         }
-        // /Pages object (now current object number equals $pagesObjN)
         $this->_newobj();
         $this->_out("<< /Type /Pages /Count ".$pagesCount." /Kids [ $kids ] >>");
         $this->_out("endobj");
-        // /Catalog object referencing /Pages
         $this->_newobj();
         $this->_out("<< /Type /Catalog /Pages ".$pagesObjN." 0 R >>");
         $this->_out("endobj");

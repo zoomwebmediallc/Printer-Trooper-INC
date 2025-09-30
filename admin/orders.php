@@ -4,7 +4,8 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../includes/email_helper.php';
 
-// NOTE: No authentication implemented. Consider protecting this page.
+// Admin authentication
+requireAdmin();
 
 $database = new Database();
 $db = $database->getConnection();

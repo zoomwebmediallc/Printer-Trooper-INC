@@ -38,6 +38,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if($user->login($username, $password)) {
             // Persist user session
             loginUser($user);
+            // Elevate to admin if allowed
+            loginAdminIfAllowed();
             // Merge any session cart into this user's cart
             $cart->mergeSessionCartToUser(getUserId());
             // Redirect back to requested page if provided

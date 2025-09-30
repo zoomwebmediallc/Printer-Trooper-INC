@@ -5,6 +5,9 @@ require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../includes/email_helper.php';
 require_once __DIR__ . '/../config/email.php';
 
+// Admin authentication
+requireAdmin();
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: orders.php');
     exit;
